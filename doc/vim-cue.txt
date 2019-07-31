@@ -1,0 +1,91 @@
+*vim-cue.txt* Cue development plugin
+*vim-cue*
+
+CONTENTS                                                             *cue-contents*
+
+  1. Intro........................................|cue-intro|
+  2. Install......................................|cue-install|
+  3. Commands.....................................|cue-commands|
+  4. Mappings.....................................|cue-mappings|
+  6. Functions....................................|cue-functions|
+  7. Settings.....................................|cue-settings|
+  8. Troubleshooting..............................|cue-troubleshooting|
+  9. Credits......................................|cue-credits|
+
+==============================================================================
+INTRO                                                                   *cue-intro*
+
+==============================================================================
+INSTALL                                                               *cue-install*
+
+==============================================================================
+COMMANDS                                                             *cue-commands*
+
+                                                                          *:CueFmt*
+:CueFmt
+
+Filter the current Cue buffer through `cue fmt`.  It tries to
+preserve cursor position and avoids replacing the buffer with stderr
+output.
+
+==============================================================================
+MAPPINGS                                                            *cue-mappings*
+
+==============================================================================
+FUNCTIONS                                                           *cue-functions*
+
+                                                                     *cue#Format()*
+
+Filter the current Cue buffer through `cue fmt`.  It tries to
+preserve cursor position and avoids replacing the buffer with stderr
+output.
+
+==============================================================================
+SETTINGS                                                            *cue-settings*
+
+                                                             *'g:cue_fmt_on_save'*
+
+Use this option to auto |:CueFmt| on save. By default it's enabled >
+
+  let g:cue_fmt_on_save = 1
+<
+                                                                 *'g:cue_command'*
+
+Use this option to define which tool is used to fotmat. By default `cue` is
+used >
+
+  let g:cue_command = "cue"
+<
+                                                             *'g:cue_fmt_command'*
+
+Use this option to define which <cmd> parameter is used with *g:cue_command* tool.
+By default `fmt` is used >
+
+  let g:cue_fmt_command = "fmt"
+<
+                                                             *'g:cue_fmt_options'*
+
+Use this option to add additional options to the
+|'g:cue_command'| + |'g:cue_fmt_command'|. Default is empty. >
+
+  let g:cue_fmt_options = ''
+<
+                                                       *'g:cue_fmt_fail_silently'*
+
+Use this option to enable processing of
+|'g:cue_command'| + |'g:cue_fmt_command'| command if it fails. By default
+it is turned off. By default the error output from the
+|'g:cue_command'| + |'g:cue_fmt_command'| command is ignored.
+FixMe: The processing of the |'g:cue_command'| + |'g:cue_fmt_command'|
+is not implemented yet. So clearing this option would not do anything at this time. >
+
+  let g:cue_fmt_fail_silently = 1
+<
+
+==============================================================================
+TROUBLESHOOTING                                              *cue-troubleshooting*
+
+==============================================================================
+CREDITS                                                             *cue-credits*
+
+

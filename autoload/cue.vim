@@ -2,26 +2,26 @@
 
 " Options.
 
-if !exists("g:jsonnet_command")
-  let g:jsonnet_command = "jsonnet"
+if !exists("g:cue_command")
+  let g:cue_command = "cue"
 endif
 
-if !exists("g:jsonnet_fmt_command")
-  let g:jsonnet_fmt_command = "fmt"
+if !exists("g:cue_fmt_command")
+  let g:cue_fmt_command = "fmt"
 endif
 
-if !exists('g:jsonnet_fmt_options')
-  let g:jsonnet_fmt_options = ''
+if !exists('g:cue_fmt_options')
+  let g:cue_fmt_options = ''
 endif
 
-if !exists('g:jsonnet_fmt_fail_silently')
-  let g:jsonnet_fmt_fail_silently = 1
+if !exists('g:cue_fmt_fail_silently')
+  let g:cue_fmt_fail_silently = 1
 endif
 
 
 " System runs a shell command. It will reset the shell to /bin/sh for Unix-like
 " systems if it is executable.
-function! jsonnet#System(str, ...)
+function! cue#System(str, ...)
   let l:shell = &shell
   if executable('/bin/sh')
     let &shell = '/bin/sh'
@@ -38,7 +38,7 @@ endfunction
 
 " CheckBinPath checks whether the given binary exists or not and returns the
 " path of the binary. It returns an empty string if it doesn't exists.
-function! jsonnet#CheckBinPath(binName)
+function! cue#CheckBinPath(binName)
 
     if executable(a:binName)
         if exists('*exepath')
@@ -48,16 +48,16 @@ function! jsonnet#CheckBinPath(binName)
 	   return a:binName
         endif
     else
-        echo "vim-jsonnet: could not find '" . a:binName . "'."
+        echo "vim-cue: could not find '" . a:binName . "'."
         return ""
     endif
 
 endfunction
 
-" Format calls `jsonnet fmt ... ` on the file and replaces the file with the
+" Format calls `cue fmt ... ` on the file and replaces the file with the
 " auto formatted version. Does some primitive error checking of the
-" jsonnet fmt command too.
-function! jsonnet#Format()
+" cue fmt command too.
+function! cue#Format()
 
     " Save cursor position and many other things.
     let l:curw = winsaveview()
@@ -67,23 +67,26 @@ function! jsonnet#Format()
     call writefile(getline(1, '$'), l:tmpname)
 
     " get the command first so we can test it
-    let l:binName = g:jsonnet_command
+    let l:binName = g:cue_command
 
    " check if the user has installed command binary.
-    let l:binPath = jsonnet#CheckBinPath(l:binName)
+    let l:binPath = cue#CheckBinPath(l:binName)
     if empty(l:binPath)
       return
     endif
 
 
     " Populate the final command.
-    let l:command = l:binPath . " " . g:jsonnet_fmt_command
+    let l:command = l:binPath . " " . g:cue_fmt_command
     " The inplace modification is default. Makes file management easier
-    let l:command = l:command . ' -i '
-    let l:command = l:command . g:jsonnet_fmt_options
+    " Indentation spacing is 4 by default
+    " jjo:
+    " let l:command = l:command . ' -i '
+    let l:command = l:command . ' -i -n 2 '
+    let l:command = l:command . g:cue_fmt_options
 
-    " Execute the compiled jsonnet fmt command and save the return value
-    let l:out = jsonnet#System(l:command . " " . l:tmpname)
+    " Execute the compiled cue fmt command and save the return value
+    let l:out = cue#System(l:command . " " . l:tmpname)
     let l:errorCode = v:shell_error
 
     if l:errorCode == 0
@@ -108,14 +111,14 @@ function! jsonnet#Format()
         silent edit!
         let &fileformat = l:originalFileFormat
         let &syntax = &syntax
-    elseif g:jsonnet_fmt_fail_silently == 0
+    elseif g:cue_fmt_fail_silently == 0
         " FixMe: We could leverage the errors coming from the `jsonent fmt` and
         " give immediate feedback to the user at every save time.
         " Our inspiration, vim-go, opens a new list below the current edit
         " window and shows the errors (the output of the fmt command).
-        " We are not sure whether this is desired in the vim-jsonnet community
+        " We are not sure whether this is desired in the vim-cue community
         " or not. Nevertheless, this else block is a suitable place to benefit
-        " from the `jsonnet fmt` errors.
+        " from the `cue fmt` errors.
     endif
 
     " Restore our cursor/windows positions.

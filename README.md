@@ -1,10 +1,13 @@
-# vim-jsonnet
+# vim-cue
 
-[Jsonnet][jsonnet] filetype plugin for Vim.
+This plugin is heavily derived from https://github.com/google/vim-jsonnet,
+very much WIP as of Aug/2019.
 
-[jsonnet]: http://jsonnet.org
+[Cue][cue] filetype plugin for Vim.
 
-![A screenshot of Jsonnet syntax highlighting](https://raw.githubusercontent.com/google/vim-jsonnet/master/jsonnet-screenshot.png)
+[cue]: https://github.com/cuelang
+
+![A screenshot of Cue syntax highlighting](https://raw.githubusercontent.com/jjo/vim-cue/master/cue-screenshot.png)
 
 # Install
 
@@ -13,23 +16,23 @@ To install via Vim plugin managers:
 ### Vundle
 
 ```viml
-Plugin 'google/vim-jsonnet'
+Plugin 'jjo/vim-cue'
 ```
 
 ### vim-plug
 
 ```viml
-Plug 'google/vim-jsonnet'
+Plug 'cue/vim-cue'
 ```
 
 ### Pathogen
 
 ```sh
-git clone https://github.com/google/vim-jsonnet ~/.vim/bundle/vim-jsonnet
+git clone https://github.com/jjo/vim-cue ~/.vim/bundle/vim-cue
 ```
 
 ## More Info
 
-For more info on Jsonnet:
-* Jsonnet Website: http://jsonnet.org
-* Jsonnet Repository: https://github.com/google/jsonnet
+For more info on Cue:
+* Cue Website: https://github.com/cuelang
+* Cue Repository: https://github.com/cuelang/cue
