@@ -22,7 +22,7 @@ Plugin 'jjo/vim-cue'
 ### vim-plug
 
 ```viml
-Plug 'cue/vim-cue'
+Plug 'jjo/vim-cue'
 ```
 
 ### Pathogen
