@@ -33,7 +33,7 @@ syntax keyword Constant true false null
 syntax keyword Underlined error
 
 syn match Type "<[^>]*>\||"
-syn match Type "nulll\|bool\|float\|u\?int\(8\|16\|32\|64\|128\)\?\|string\|number\|bytes\|\.\.\.\|[*]"
+syn match Type "\<\(nulll\|bool\|float\|u\?int\(8\|16\|32\|64\|128\)\?\|string\|number\|bytes\|\.\.\.\|[*]\)\>"
 syn match Keyword "\<_[a-zA-Z0-9_]*"
 
 syn region String start='"""' end='"""'
