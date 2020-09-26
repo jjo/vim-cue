@@ -17,8 +17,6 @@ syntax match Number "\<\d\+[.]\d*\([Ee][+-]\?\d\+\)\?\>"
 syntax match Number "\<[.]\d\+\([Ee][+-]\?\d\+\)\?\>"
 
 syn match Type "\$"
-"syn region String start='L\=\'' skip='\\\\\|\\\'' end='\''
-
 
 syn match Keyword "\<[a-zA-Z_][a-z0-9A-Z_"()\\ ]*\s*?\?::\?"
 
@@ -40,9 +38,13 @@ syn match Type "<[^>]*>\||"
 syn match Type "\<\(nulll\|bool\|float\|u\?int\(8\|16\|32\|64\|128\)\?\|string\|number\|bytes\|\.\.\.\|[*]\)\>"
 syn match Keyword "\<_[a-zA-Z0-9_]*"
 
-syn region String start='"""' end='"""'
-syn region String start='L\="' end='"'
-syn region Special start='\\(' end=')'
+" String literals.
+syn region String start=+\z(#*\)\z('\|"\)+ skip="\\\z2" end="\z2\z1"
+" Multiline string literals.
+syn region String start=+\z(#*\)\z('''\|"""\)+ end="\z2\z1"
+" Interpolation
+" TODO: handle modified escape delimeters.
+syn region Special start="\\(" end=")"
 syn match Special "\\\(([^)]\+)\)" contained containedin=String
 
 " builtins
