@@ -18,7 +18,7 @@ syntax match Number "\<[.]\d\+\([Ee][+-]\?\d\+\)\?\>"
 
 syn match Type "\$"
 
-syn match Keyword "\<[a-zA-Z_][a-z0-9A-Z_"()\\ ]*\s*?\?::\?"
+syn match Keyword "\<[a-zA-Z_][a-z0-9A-Z_"()\\ ]*\s*[?!]\?::\?"
 
 syn region Object start="{" end="}" fold transparent
 
