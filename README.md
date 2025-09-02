@@ -35,4 +35,4 @@ git clone https://github.com/jjo/vim-cue ~/.vim/bundle/vim-cue
 
 For more info on Cue:
 * Cue Website: https://cuelang.org
-* Cue Repository: https://github.com/cuelang/cue
+* Cue Repository: https://github.com/cue-lang/cue
